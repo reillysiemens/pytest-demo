@@ -7,5 +7,9 @@ def uppercase(s: str) -> str:
 
     Returns:
         str: The converted uppercase string.
+
+    Example:
+        >>> uppercase('completely different') == 'COMPLETELY DIFFERENT'
+        True
     """
     return s.upper()
