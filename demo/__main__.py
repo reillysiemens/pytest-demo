@@ -1,2 +1,5 @@
+from demo.utils import uppercase
+
+
 def main():
-    pass
+    print(uppercase('Hello, World!'))
