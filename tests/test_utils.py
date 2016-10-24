@@ -1,8 +1,31 @@
 import pytest
-from demo.utils import uppercase
+from demo.utils import InvalidHovercraftContents, Hovercraft, uppercase
 
 
-def test_can_uppercase_strings():
+@pytest.fixture
+def hovercraft():
+    return Hovercraft()
+
+
+def test_hovercrafts_can_be_full_of_nothing(hovercraft) -> None:
+    """Test that :class:`Hovercraft` can be full of nothing."""
+    assert hovercraft.contents == ''
+
+
+def test_hovercrafts_can_be_full_of_eels(hovercraft) -> None:
+    """Test that :class:`Hovercraft` can be full of eels."""
+    hovercraft.contents = 'eels'
+    assert hovercraft.contents == 'eels'
+
+
+def test_hovercrafts_cannot_be_full_of_anything_else(hovercraft) -> None:
+    """Test that :class:`Hovercraft` cannot be full of anything else."""
+    with pytest.raises(InvalidHovercraftContents) as exc_info:
+        hovercraft.contents = 'dogs'
+    assert "No, no, no ...tobacco...er, cigarettes?" in str(exc_info.value)
+
+
+def test_can_uppercase_strings() -> None:
     """
     Test that that ``demo.utils.uppercase`` can uppercase strings.
 

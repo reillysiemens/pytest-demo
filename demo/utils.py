@@ -9,7 +9,7 @@ class Hovercraft:
 
     Args:
         contents (str): The contents of the :class:`Hovercraft`. By default this
-            is empty string.
+            is the empty string.
 
     Attributes:
         contents (str): The contents of the :class:`Hovercraft`.
