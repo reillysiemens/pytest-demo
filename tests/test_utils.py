@@ -25,35 +25,33 @@ def test_hovercrafts_cannot_be_full_of_anything_else(hovercraft) -> None:
     assert "No, no, no ...tobacco...er, cigarettes?" in str(exc_info.value)
 
 
-def test_can_uppercase_strings() -> None:
-    """
-    Test that that ``demo.utils.uppercase`` can uppercase strings.
-
-    Note:
-        UTF-8 strings are pretty dope, yo.
-
-    Args:
-        None
-
-    Returns:
-        None
-    """
-
-    # The empty string should be unmodified.
+def test_uppercase_leaves_empty_string_unmodified() -> None:
+    """The empty string shouldn't be modified by ``uppercase()``."""
     assert uppercase('') == ''
 
-    # Lowercase should become uppercase.
+
+def test_uppercase_converts_lowercase_ASCII_characters() -> None:
+    """
+    Lowercase ASCII characters should be converted to uppercase by
+    the ``uppercase()`` function.
+    """
     assert uppercase('pining for the fjords') == 'PINING FOR THE FJORDS'
 
-    # Punctuation shouldn't be modified.
+
+def test_uppercase_does_not_modify_punctuation() -> None:
+    """Punctuation should be unmodified by ``uppercase()``."""
     given = "Well it's hardly a bloody replacement, is it?!!???!!?"
     expected = "WELL IT'S HARDLY A BLOODY REPLACEMENT, IS IT?!!???!!?"
     assert uppercase(given) == expected
 
-    # Snek is always snek. A.K.A UTF-8 emoji work.
+
+def test_uppercase_does_not_convert_emoji() -> None:
+    """Snek is always snek. A.K.A UTF-8 emoji work."""
     assert uppercase('🐍') == '🐍'
 
-    # Raises ``AttributeError`` on invalid input and has the correct message.
+
+def test_uppercase_raises_attribute_error_on_invalid_input() -> None:
+    """An ``AttributeError`` should be raised on invalid input."""
     with pytest.raises(AttributeError) as exc_info:
         uppercase(1)
     assert "'int' object has no attribute 'upper'" in str(exc_info.value)
