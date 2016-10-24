@@ -3,7 +3,7 @@ from demo.utils import InvalidHovercraftContents, Hovercraft, uppercase
 
 
 @pytest.fixture
-def hovercraft():
+def hovercraft() -> Hovercraft:
     return Hovercraft()
 
 
